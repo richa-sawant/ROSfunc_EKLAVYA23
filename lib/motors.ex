@@ -6,18 +6,12 @@ defmodule Demo.Motors do
   end
 
   def init(output_topic) do
-    Demo.Pubsub.subscribe(output_topic, self())
+    Demo.Pubsub.subscribe(output_topic, &output_callback/1)
 
     {:ok, output_topic}
   end
 
-  def handle_cast({:callback, message}, output_topic) do
-    # IO.inspect(message)
-    output_callback(message)
-    {:noreply,output_topic}
-  end
-
-  def output_callback(message) do
-    IO.inspect(message, label: "Received message in Motors  ")
+  defp output_callback({_, message}) do
+    IO.inspect(message, label: "Received message in Motors")
   end
 end

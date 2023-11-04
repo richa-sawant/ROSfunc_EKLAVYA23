@@ -3,7 +3,6 @@ defmodule Demo.Main do
     {:ok, lsa_topic} = Demo.Pubsub.start_link()
     {:ok, mpu_topic} = Demo.Pubsub.start_link()
     {:ok, output_topic} = Demo.Pubsub.start_link()
-
     {:ok,_mcu} = Demo.Mcu.start_link(lsa_topic, mpu_topic, output_topic)
     {:ok,_motors} = Demo.Motors.start_link(output_topic)
     {:ok, _lsa} = Demo.Lsa.start_link(lsa_topic)
