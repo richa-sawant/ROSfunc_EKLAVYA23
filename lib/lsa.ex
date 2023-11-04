@@ -5,12 +5,11 @@ defmodule Demo.Lsa do
     GenServer.start_link(__MODULE__, {lsa_topic, nil})
   end
 
-  def init(lsa_topic) do
+  def init({lsa_topic, _}) do
     {:ok, {lsa_topic, nil}}
   end
 
   def lsa_loop(lsa_topic) do
-    # IO.inspect(lsa_topic)
     loop(lsa_topic, 0)
   end
 
@@ -23,6 +22,6 @@ defmodule Demo.Lsa do
   end
 
   defp loop(_, _) do
-   :ok
+    :ok
   end
 end

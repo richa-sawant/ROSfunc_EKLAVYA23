@@ -1,4 +1,3 @@
-
 defmodule Demo.Mcu do
   use GenServer
 
@@ -7,29 +6,21 @@ defmodule Demo.Mcu do
   end
 
   def init({lsa_topic, mpu_topic, output_topic}) do
-    Demo.Pubsub.subscribe(lsa_topic, self())
-    Demo.Pubsub.subscribe(mpu_topic, self())
-
+    Demo.Pubsub.subscribe(lsa_topic, fn message -> lsa_callback({lsa_topic, mpu_topic, output_topic}, message) end)
+    Demo.Pubsub.subscribe(mpu_topic, fn message -> mpu_callback({lsa_topic, mpu_topic, output_topic}, message) end)
     {:ok, {lsa_topic, mpu_topic, output_topic}}
   end
 
-  def handle_cast({:callback, message}, {lsa_topic, mpu_topic, output_topic}) do
-    case message do
-      [0, 0, 0, 0, 0] ->
-        lsa_callback(message,output_topic)
-      1000 ->
-        mpu_callback(message,output_topic)
-    end
-    {:noreply, {lsa_topic, mpu_topic, output_topic}}
+  def lsa_callback({_, _, output_topic}, message) do
+    # IO.inspect(message)
+    {_pid,mess} = message
+    IO.inspect(mess, label: "Received LSA message in MCU")
+    Demo.Pubsub.publish(output_topic, mess)
   end
 
-  def lsa_callback(message,output_topic) do
-    IO.inspect(message, label: "Received LSA message in MCU ")
-    Demo.Pubsub.publish(output_topic, message)
-  end
-
-  def mpu_callback(message,output_topic) do
-    IO.inspect(message, label: "Received MPU message in MCU ")
-    Demo.Pubsub.publish(output_topic, message)
+  def mpu_callback({_, _, output_topic}, message) do
+    {_pid,mess} = message
+    IO.inspect(mess, label: "Received MPU message in MCU")
+    Demo.Pubsub.publish(output_topic, mess)
   end
 end
