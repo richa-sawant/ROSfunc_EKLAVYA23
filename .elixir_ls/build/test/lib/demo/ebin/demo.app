@@ -1,0 +1,9 @@
+{application,demo,
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger]},
+              {description,"demo"},
+              {modules,['Elixir.Demo','Elixir.Demo.Lsa','Elixir.Demo.Main',
+                        'Elixir.Demo.Mcu','Elixir.Demo.Motors',
+                        'Elixir.Demo.Mpu','Elixir.Demo.Pubsub']},
+              {registered,[]},
+              {vsn,"0.1.0"}]}.
