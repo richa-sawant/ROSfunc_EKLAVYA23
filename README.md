@@ -6,9 +6,9 @@ Using functional programming to implement a natively parallel and fault tolerant
 - [Getting Started](#getting-started)  
     - [Prerequisites](#prerequisites)   
     - [Installation](#installation)  
-- [Project Structure](#project structure)   
+- [Project Structure](#project-structure)   
 - [Usage](#usage)  
-    -  [For independently using the PubSub Library](#for independently using the PubSub library)  
+    -  [For independently using the PubSub Library](#for-independently-using-the-PubSub-library)  
 - [Acknowledgement and Resources](#acknowledgement-and-resources)  
 - [Contributor ](#contributor )  
 ##  About The Project
