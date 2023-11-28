@@ -1,7 +1,16 @@
 # ROSfunc
 
 Using functional programming to implement a natively parallel and fault tolerant ROS-like software stack.
-
+## Table of Contents  
+- [About the Project](#about-the-project)  
+- [Getting Started](#getting-started)  
+    - [Prerequisites](#prerequisites)   
+    - [Installation](#installation)  
+- [Project Structure](#project structure)   
+- [Usage](#usage)  
+    -  [For independently using the PubSub Library](#for independently using the PubSub library)  
+- [Acknowledgement and Resources](#acknowledgement-and-resources)  
+- [Contributor ](#contributor )  
 ##  About The Project
 This project serves as a foundational exploration of functional programming concepts. Its primary objective is to create a software system inspired by the Robot Operating System (ROS) that demonstrates a functioning publisher-subscriber communication model.
 
@@ -54,7 +63,7 @@ This project demonstrates a simple publisher-subscriber communication model. To 
 
 ` Demo.Main.start`
 
-### For independently using the PubSub Model:
+### For independently using the PubSub Model
 1. Start the topic process.
 `{:ok, topic_pid} = Demo.Pubsub.start_link()`
 
@@ -63,7 +72,7 @@ This project demonstrates a simple publisher-subscriber communication model. To 
  
 3. Make the Publisher publish the message onto the topic using publish function of the Pubsub module.
 `publish(topic_pid, message)`
-##  Resources and Acknowledgments 
+##  Acknowledgement and Resources
 
 [Getting started guidebook](https://elixirschool.com/en/lessons/basics/basics)
 
